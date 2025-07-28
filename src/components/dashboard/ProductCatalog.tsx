@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { useOOSStore } from '@/stores/oosStore';
+import { Product } from '@/types';
 import { 
   Package, 
   Plus, 
@@ -51,13 +52,13 @@ export function ProductCatalog() {
     return matchesSearch && matchesCategory && matchesStatus;
   });
 
-  const getStockStatus = (product) => {
+  const getStockStatus = (product: Product) => {
     if (product.isOutOfStock) return { status: 'Out of Stock', color: 'text-red-600', bg: 'bg-red-100', icon: AlertTriangle };
     if (product.currentStock <= product.minStockLevel) return { status: 'Low Stock', color: 'text-orange-600', bg: 'bg-orange-100', icon: Clock };
     return { status: 'In Stock', color: 'text-green-600', bg: 'bg-green-100', icon: CheckCircle };
   };
 
-  const getStockPercentage = (product) => {
+  const getStockPercentage = (product: Product) => {
     return Math.round((product.currentStock / product.maxStockLevel) * 100);
   };
 

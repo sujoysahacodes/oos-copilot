@@ -26,12 +26,25 @@ export function OOSOverview() {
   } = useOOSStore();
 
   useEffect(() => {
+    console.log('OOSOverview - Initial data:', { 
+      products: products.length, 
+      stores: stores.length, 
+      alerts: alerts.length 
+    });
+    
     fetchStores();
     fetchProducts();
     fetchAlerts();
     fetchPerformanceMetrics('today');
   }, [fetchStores, fetchProducts, fetchAlerts, fetchPerformanceMetrics]);
 
+  console.log('OOSOverview - Current data:', { 
+    products: products.length, 
+    stores: stores.length, 
+    alerts: alerts.length 
+  });
+
+  // Calculate actual metrics from store data
   const outOfStockProducts = products.filter(p => p.isOutOfStock).length;
   const lowStockProducts = products.filter(p => 
     !p.isOutOfStock && p.currentStock <= p.minStockLevel

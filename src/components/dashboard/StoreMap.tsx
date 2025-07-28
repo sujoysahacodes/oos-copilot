@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { useOOSStore } from '@/stores/oosStore';
+import { Store } from '@/types';
 import { 
   MapPin, 
   RefreshCw, 
@@ -15,7 +16,7 @@ import {
 
 export function StoreMap() {
   const { stores, fetchStores, isLoadingStores } = useOOSStore();
-  const [selectedStore, setSelectedStore] = useState(null);
+  const [selectedStore, setSelectedStore] = useState<Store | null>(null);
   const [isRefreshing, setIsRefreshing] = useState(false);
   const [viewMode, setViewMode] = useState('grid'); // 'grid' or 'map'
 
@@ -29,14 +30,14 @@ export function StoreMap() {
     setTimeout(() => setIsRefreshing(false), 1000);
   };
 
-  const getStoreStatusColor = (store) => {
+  const getStoreStatusColor = (store: Store) => {
     if (store.oosPercentage > 3) return 'bg-red-500';
     if (store.oosPercentage > 2) return 'bg-orange-500';
     if (store.oosPercentage > 1) return 'bg-yellow-500';
     return 'bg-green-500';
   };
 
-  const getStoreStatusText = (store) => {
+  const getStoreStatusText = (store: Store) => {
     if (store.oosPercentage > 3) return 'Critical';
     if (store.oosPercentage > 2) return 'High Alert';
     if (store.oosPercentage > 1) return 'Warning';

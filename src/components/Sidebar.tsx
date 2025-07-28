@@ -85,7 +85,7 @@ export function Sidebar({ activeTab, onTabChange, isCollapsed, onToggleCollapse 
         {!isCollapsed && (
           <div className="p-4 border-t border-gray-200">
             <div className="bg-gray-50 rounded-lg p-3">
-              <h3 className="text-sm font-medium text-gray-900 mb-2">Today's Summary</h3>
+              <h3 className="text-sm font-medium text-gray-900 mb-2">Today&apos;s Summary</h3>
               <div className="space-y-2">
                 <div className="flex justify-between items-center">
                   <span className="text-xs text-gray-600">Active Alerts</span>
